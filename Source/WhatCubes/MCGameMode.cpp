@@ -6,7 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 
 AMCGameMode::AMCGameMode()
-	: ChunkSize(1600), RenderingRange(4800)
+	: RenderingRange(4800), ChunkSize(1600)
 {
 	PrimaryActorTick.bCanEverTick = true;
 }

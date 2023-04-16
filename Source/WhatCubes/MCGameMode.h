@@ -38,11 +38,12 @@ public:
 	UFUNCTION()
 	void RemoveChunk();
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	float RenderingRange;
+	
 private:
 	FVector2D ChunkLocation;
 
 	float ChunkSize;
-
-	float RenderingRange;
 
 };
