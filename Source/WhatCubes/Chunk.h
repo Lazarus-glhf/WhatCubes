@@ -15,11 +15,8 @@ public:
 	// Sets default values for this actor's properties
 	AChunk();
 
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	USceneComponent* Root;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UStaticMeshComponent* ChunkMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UInstancedStaticMeshComponent* Mesh;
 
 protected:
 	// Called when the game starts or when spawned

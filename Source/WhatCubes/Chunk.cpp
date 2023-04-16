@@ -3,24 +3,30 @@
 
 #include "Chunk.h"
 
+#include "Components/InstancedStaticMeshComponent.h"
+#include "Kismet/KismetMathLibrary.h"
+
 // Sets default values
 AChunk::AChunk()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	SetRootComponent(Root);
-
-	ChunkMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ChunkMesh"));
-	ChunkMesh->SetRelativeScale3D(FVector(16, 16, 1));
-	ChunkMesh->SetRelativeLocation(FVector(800, 800, 0.5));
+	Mesh = CreateDefaultSubobject<UInstancedStaticMeshComponent>(TEXT("Mesh"));
 }
 
 // Called when the game starts or when spawned
 void AChunk::BeginPlay()
 {
 	Super::BeginPlay();
+
+	for (int X = 0; X < 16; X++)
+	{
+		for (int Y = 0; Y < 16; Y++)
+		{
+			Mesh->AddInstance(FTransform(FVector(X * 100, Y * 100,  UKismetMathLibrary::RandomIntegerInRange(0, 4) * 100)));
+		}
+	}
 	
 }
 
