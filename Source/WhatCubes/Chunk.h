@@ -57,10 +57,13 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	TArray<FVector2D> BlockUV {
 		FVector2D(1, 0),
-		FVector2D(1, 1),
+		FVector2D(0, 0),
 		FVector2D(0, 1),
-		FVector2D(0, 0)
+		FVector2D(1, 1)
 	};
+
+	UPROPERTY(BlueprintReadOnly)
+	TArray<FColor> BlockVertexColors;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	TArray<FVector> Vertices;
@@ -96,8 +99,33 @@ private:
 
 	void GenerateMesh();
 
-	void CreateBlockFace(EFaceDirection Direction, FVector InPosition);
+	/**
+	 * @desc 将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
+	 * @param Direction 需要渲染的是哪个面
+	 * @param InPosition Block 的世界位置
+	 */
+	void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition);
 
-	TArray<FVector> GetFaceVertices(EFaceDirection Direction, FVector InPosition);
+	/**
+	 * @desc 计算传入面上各个顶点的世界坐标 
+	 * @param Direction 传入的是哪个面 
+	 * @param InPosition Block 的世界坐标
+	 * @return 构成一个 Block 的所有顶点的世界坐标
+	 */
+	TArray<FVector> GetFaceVertices(EFaceDirection Direction, const FVector& InPosition);
+
+	/**
+	 * @desc 是否要生成面
+	 * @return 
+	 */
+	bool ShouldCreateFace(const FVector& InPosition);
+
+	/**
+	 * @desc 获得相邻坐标 
+	 * @param Direction  
+	 * @param InPosition 
+	 * @return 
+	 */
+	FVector GetPositionInDirection(const EFaceDirection Direction, const FVector& InPosition);
 
 };

@@ -21,14 +21,14 @@ void AChunk::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/** Resize Blocks Length */
+	/** 设定区块由多少个 Block 组成，每个 Block 都被包含在 Blocks 数组中，并记录了其种类 */
 	Blocks.SetNum(RenderChunkSizeXY * RenderChunkSizeXY * RenderChunkSizeXY);
 
 	CreateBlocks(Factor);
 
 	GenerateMesh();
 
-	Mesh->CreateMeshSection(0, Vertices, Triangles, TArray({FVector()}), BlockUV, TArray({FColor()}), TArray({FProcMeshTangent()}), false);
+	Mesh->CreateMeshSection(0, Vertices, Triangles, TArray({FVector()}), BlockUV, BlockVertexColors, TArray({FProcMeshTangent()}), false);
 }
 
 // Called every frame
@@ -39,16 +39,20 @@ void AChunk::Tick(float DeltaTime)
 
 void AChunk::CreateBlocks(float InFactor)
 {
+	/** 获取 Chunk 坐标 */
 	const FVector ActorLocation = GetActorLocation();
 
 	for (int X = 0; X < RenderChunkSizeXY; X++)
 	{
 		for (int Y = 0; Y < RenderChunkSizeXY; Y++)
 		{
+			/** 生成 Block 的实际坐标 */ 
 			const float XPos = X * 100 + floor(ActorLocation.X);
 			const float YPos = Y * 100 + floor(ActorLocation.Y);
+			/** 噪声 */
 			const float ZPos = floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor));
 
+			/** 将 Chunk 内 ZPos 及以下的方块标记为 Stone 需要渲染，否则标记为 Air 无需渲染 */
 			for (int Z = 0; Z < RenderChunkSizeXY; Z++)
 			{
 				if (Z <= ZPos) 
@@ -66,17 +70,25 @@ void AChunk::CreateBlocks(float InFactor)
 
 void AChunk::GenerateMesh()
 {
+	/** 遍历 Blocks */
 	for (int X = 0; X < RenderChunkSizeXY; ++X)
 	{
 		for (int Y = 0; Y < RenderChunkSizeXY; ++Y)
 		{
 			for (int Z = 0; Z < RenderChunkSizeXY; ++Z)
 			{
+				/** 若为实体方块 */
 				 if (Blocks[GetBlockIndex(X, Y, Z)] > EBlockType::Air )
 				 {
+				 	/** 遍历六个面 */
 					 for (int i = 0; i < 6; ++i)
 					 {
-						 CreateBlockFace(static_cast<EFaceDirection>(i), FVector(X, Y, Z) * 100);
+					 	const EFaceDirection Direction = static_cast<EFaceDirection>(i);
+					 	FVector BlockPos = FVector(X, Y, Z);
+					 	if (ShouldCreateFace(GetPositionInDirection(Direction, BlockPos)))
+					 	{
+					 		CreateBlockFace(Direction, BlockPos * 100);
+					 	}
 					 }
 				 }
 			}
@@ -84,24 +96,30 @@ void AChunk::GenerateMesh()
 	}
 }
 
-void AChunk::CreateBlockFace(EFaceDirection Direction, FVector InPosition)
+void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition)
 {
-	/** 创建顶点 */
+	/** 添加顶点坐标 */
 	Vertices.Append(GetFaceVertices(Direction, InPosition));
 
-	/** 创建三角形 */
+	/** 添加顶点索引 */
 	const int VerticesNum = Vertices.Num();
 	Triangles.Append({ VerticesNum + 0, VerticesNum + 3, VerticesNum + 1, VerticesNum + 1, VerticesNum + 3, VerticesNum + 2 });
+
+	/** 添加顶点颜色 */
+	// float color = static_cast<float>(Direction) / 5;
+	// BlockVertexColors.Append(TArray({ FColor(0, 0, 0, color), FColor(), FColor(), FColor() }));
 }
 
- TArray<FVector> AChunk::GetFaceVertices(EFaceDirection Direction, FVector InPosition)
+ TArray<FVector> AChunk::GetFaceVertices(EFaceDirection Direction, const FVector& InPosition)
 {
 	TArray<FVector> FaceVertices;
-	
+
+	/** 每个面需要 4 个索引构成 2 个三角形，所以需要 * 4，即步长为 4 */
 	const int StartIndex = static_cast<int>(Direction) * 4;
 
 	for (int i = StartIndex; i < StartIndex + 4; ++i)
 	{
+		/** 将此顶点的世界坐标加入到数组中 */
 		FaceVertices.Add(BlockVertices[BlockTriangles[i]] + InPosition);
 	}
 
@@ -111,4 +129,51 @@ void AChunk::CreateBlockFace(EFaceDirection Direction, FVector InPosition)
 int AChunk::GetBlockIndex(int X, int Y, int Z)
 {
 	return  X + Y * RenderChunkSizeXY + Z * RenderChunkSizeXY * RenderChunkSizeXY;
+}
+
+bool AChunk::ShouldCreateFace(const FVector& InPosition)
+{
+	// 判断输入索引是否为边界值，避免越界
+	if (InPosition.X < 0 || InPosition.Y < 0 || InPosition.Z <0 || InPosition.Z >= RenderChunkSizeXY || InPosition.X >= RenderChunkSizeXY || InPosition.Y >= RenderChunkSizeXY)
+	{
+		return true;	
+	}
+
+	// 若相邻方块不为实体
+	if (Blocks[GetBlockIndex(InPosition.X, InPosition.Y, InPosition.Z)] <= EBlockType::Air)
+	{
+		return true;
+	}
+	return false;
+}
+
+FVector AChunk::GetPositionInDirection(const EFaceDirection Direction, const FVector& InPosition)
+{
+	FVector OutPos;
+	
+	switch (Direction)
+	{
+	case EFaceDirection::Forward :
+		OutPos = FVector(1, 0, 0);
+		break;
+	case EFaceDirection::Right :
+		OutPos = FVector(0, 1, 0);
+		break;
+	case EFaceDirection::Back :
+		OutPos = FVector(-1, 0, 0);
+		break;
+	case EFaceDirection::Left :
+		OutPos = FVector(0, -1, 0);
+		break;
+	case EFaceDirection::Up :
+		OutPos = FVector(0, 0, 1);
+		break;
+	case EFaceDirection::Down :
+		OutPos = FVector(0, 0, -1);
+		break;
+	default:
+		break;
+	}
+
+	return InPosition + OutPos;
 }

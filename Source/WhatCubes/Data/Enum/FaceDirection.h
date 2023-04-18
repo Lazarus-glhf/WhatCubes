@@ -10,10 +10,10 @@
 UENUM(BlueprintType)
 enum class EFaceDirection : uint8
 {
-	Forward,
-	Right,
-	Back,
-	Left,
-	Up,
-	Down
+	Forward, // 前
+	Right,	// 右
+	Back,	// 后
+	Left,	// 左
+	Up,		// 上
+	Down	// 下
 };
