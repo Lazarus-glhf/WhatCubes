@@ -15,6 +15,8 @@ void AMCGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	ChunkNum = RenderingRange / ChunkSize;
+	
 	UpdateLocation();
 
 	AddChunk();
@@ -48,42 +50,26 @@ bool AMCGameMode::UpdateLocation()
 
 void AMCGameMode::AddChunk()
 {
-	const float ChunkNum = RenderingRange / ChunkSize; 
-	for (int X = ChunkNum - ChunkLocation.X; X != (int)(ChunkNum + ChunkLocation.X); )
+	for (int X = ChunkLocation.X - ChunkNum; X != int(ChunkLocation.X + ChunkNum); )
 	{
-		for (int Y = ChunkNum - ChunkLocation.Y;  Y != (int)(ChunkNum + ChunkLocation.Y); )
+		for (int Y =  ChunkLocation.Y - ChunkNum;  Y != int(ChunkLocation.Y + ChunkNum); )
 		{
 			FVector2D ActualLoc = FVector2D(X * ChunkSize, Y * ChunkSize);
 			if (FVector2D::Distance(ActualLoc, ChunkLocation * ChunkSize) <= RenderingRange)
 			{
 				FVector SpawnLoc = FVector(ActualLoc, 0);
+				// GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("SpawnLoc X: %lf, SpawnLoc Y: %lf"), ActualLoc.X, ActualLoc.Y));
 				if (!AllChunks.Contains(ActualLoc))
 				{
 					AChunk* Ref = (AChunk*)(GetWorld()->SpawnActor(ActorToSpawn, &SpawnLoc));
-					if (Ref)
-					{
-						GEngine->AddOnScreenDebugMessage(3, 5.0f, FColor::Yellow, TEXT("Success on spawning"));
-					}
 					AllChunks.Add(ActualLoc, Ref);
 				}
 			}
-			if (Y < ChunkNum + ChunkLocation.Y)
-			{
-				Y++;
-			}
-			else
-			{
-				Y--;
-			}
+			if (Y < ChunkNum + ChunkLocation.Y) { Y++;}
+			else { Y--; }
 		}
-		if (X < ChunkNum + ChunkLocation.X)
-		{
-			X++;
-		}
-		else
-		{
-			X--;
-		}
+		if (X < ChunkNum + ChunkLocation.X) { X++; }
+		else { X--; }
 	}
 }
 
