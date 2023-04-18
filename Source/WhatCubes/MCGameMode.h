@@ -23,9 +23,6 @@ protected:
 public:
 	AMCGameMode();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UClass* ActorToSpawn;
-
 	/**
 	 * @desc 维护的 Chunk 数量，由 RenderingRange 决定
 	 */

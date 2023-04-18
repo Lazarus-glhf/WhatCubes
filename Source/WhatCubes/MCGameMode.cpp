@@ -58,10 +58,9 @@ void AMCGameMode::AddChunk()
 			if (FVector2D::Distance(ActualLoc, ChunkLocation * ChunkSize) <= RenderingRange)
 			{
 				FVector SpawnLoc = FVector(ActualLoc, 0);
-				// GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("SpawnLoc X: %lf, SpawnLoc Y: %lf"), ActualLoc.X, ActualLoc.Y));
 				if (!AllChunks.Contains(ActualLoc))
 				{
-					AChunk* Ref = (AChunk*)(GetWorld()->SpawnActor(ActorToSpawn, &SpawnLoc));
+					AChunk* Ref = GetWorld()->SpawnActor<AChunk>(SpawnLoc, FRotator());
 					AllChunks.Add(ActualLoc, Ref);
 				}
 			}
