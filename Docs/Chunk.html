@@ -1,0 +1,105 @@
+<html>
+
+<header>
+<link rel="stylesheet" href="euphoria.css">
+</header>
+
+<body>
+<div class="container">
+<h1 class="heading1">Chunk</h1>
+<h2 class="heading2">Members</h2>
+<div class="member-item-container" id="TArray_FVector__BlockVertices_"><pre class="member-declare-container"><code>TArray<span><</span>FVector<span>></span> BlockVertices {</code></pre>
+<p class="member-uproperty">It is a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">一个 Block 里 8 个顶点的相对坐标</p></div></div>
+
+<div class="member-item-container" id="TArray_int32__BlockTriangles_"><pre class="member-declare-container"><code>TArray<span><</span>int32<span>></span> BlockTriangles {</code></pre>
+<p class="member-uproperty">It is a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">构成 Block 的 12 个三角形的顶点的索引</p></div></div>
+
+<div class="member-item-container" id="float_Factor"><pre class="member-declare-container"><code>float Factor;</code></pre>
+<p class="member-uproperty">It is a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc"></p></div></div>
+
+
+<h2 class="heading2">Methods</h2>
+<p>method: @Desc:
+根据 XYZ 计算出 在 Blocks 数组中的 index
+Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X
+@Params: 
+</p><p>method: @Desc:
+根据 Blocks 数组的 Index 值计算对应的 X 值
+@Returns:
+Some(Desc { description: "对应的 X 值" })
+@Params: 
+@name:
+Index
+@desc:
+Desc { description: "Blocks 数组的 Index 值" }
+</p><p>method: @Desc:
+根据 Blocks 数组的 Index 值计算对应的 Y 值
+@Returns:
+Some(Desc { description: "对应的 Y 值" })
+@Params: 
+@name:
+Index
+@desc:
+Desc { description: "Blocks 数组的 Index 值" }
+</p><p>method: @Desc:
+根据 Blocks 数组的 Index 值计算对应的 Z 值
+@Returns:
+Some(Desc { description: "对应的 Z 值" })
+@Params: 
+@name:
+Index
+@desc:
+Desc { description: "Blocks 数组的 Index 值" }
+</p><p>method: @Desc:
+将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
+@Params: 
+@name:
+Direction
+@desc:
+Desc { description: "需要渲染的是哪个面" }
+@name:
+InPosition
+@desc:
+Desc { description: "Block 的世界位置" }
+</p><p>method: @Desc:
+计算传入面上各个顶点的世界坐标
+@Returns:
+Some(Desc { description: "构成一个 Block 的所有顶点的世界坐标" })
+@Params: 
+@name:
+Direction
+@desc:
+Desc { description: "传入的是哪个面" }
+@name:
+InPosition
+@desc:
+Desc { description: "Block 的世界坐标" }
+</p><p>method: @Desc:
+是否要生成面
+@Returns:
+Some(Desc { description: "" })
+@Params: 
+</p><p>method: @Desc:
+获得相邻坐标
+@Returns:
+Some(Desc { description: "" })
+@Params: 
+@name:
+Direction
+@desc:
+Desc { description: "" }
+@name:
+InPosition
+@desc:
+Desc { description: "" }
+</p>
+</div>
+</body>
+
+<footer>
+</footer>
+
+</html>

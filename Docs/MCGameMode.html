@@ -1,0 +1,51 @@
+<html>
+
+<header>
+<link rel="stylesheet" href="euphoria.css">
+</header>
+
+<body>
+<div class="container">
+<h1 class="heading1">MCGameMode</h1>
+<h2 class="heading2">Members</h2>
+<div class="member-item-container" id="int_ChunkNum"><pre class="member-declare-container"><code>int ChunkNum;</code></pre>
+<p class="member-uproperty">It is a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc"></p></div></div>
+
+<div class="member-item-container" id="TMap_FVector2D_AChunk__AllChunks"><pre class="member-declare-container"><code>TMap<span><</span>FVector2D, AChunk*<span>></span> AllChunks;</code></pre>
+<p class="member-uproperty">It is a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">Chunk Map</p></div></div>
+
+<div class="member-item-container" id="float_RenderingRange"><pre class="member-declare-container"><code>float RenderingRange;</code></pre>
+<p class="member-uproperty">It is a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">渲染距离</p></div></div>
+
+<div class="member-item-container" id="FVector2D_ChunkLocation"><pre class="member-declare-container"><code>FVector2D ChunkLocation;</code></pre>
+<p class="member-uproperty">It is not a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">区块中心</p></div></div>
+
+<div class="member-item-container" id="float_ChunkSize"><pre class="member-declare-container"><code>float ChunkSize;</code></pre>
+<p class="member-uproperty">It is not a UPROPERTY.</p>
+<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">区块大小</p></div></div>
+
+
+<h2 class="heading2">Methods</h2>
+<p>method: @Desc:
+每 Tick 都会触发，根据 ActorLocation 更新 ChunkLocation
+@Returns:
+Some(Desc { description: "当 Player 移动一段距离后返回 true" })
+@Params: 
+</p><p>method: @Desc:
+在 RenderingRange 内生成 Chunk
+@Params: 
+</p><p>method: @Desc:
+移除 RenderingRange 外的 Chunk
+@Params: 
+</p>
+</div>
+</body>
+
+<footer>
+</footer>
+
+</html>
