@@ -7,7 +7,7 @@
 #include "WhatCubesGameModeBase.generated.h"
 
 /**
- * 
+ * %class
  */
 UCLASS()
 class WHATCUBES_API AWhatCubesGameModeBase : public AGameModeBase

@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 
 /**
- * 
+ * %enum
+ * @desc
  */
 UENUM(BlueprintType)
 enum class EFaceDirection : uint8

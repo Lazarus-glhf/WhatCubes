@@ -25,6 +25,7 @@ public:
 	TArray<EBlockType> Blocks;
 
 	/**
+	 * %member
 	 * @desc
 	 * 一个 Block 里 8 个顶点的相对坐标
 	 */
@@ -41,6 +42,7 @@ public:
 	};
 
 	/**
+	 * %member
 	 * @desc
 	 * 构成 Block 的 12 个三角形的顶点的索引
 	 */
@@ -78,12 +80,14 @@ public:
 	int RenderChunkSizeXY;
 
 	/**
+	 * %member
 	 * @desc 噪声指数，建议 0.01 ~ 0.00001
 	 */
 	UPROPERTY(BlueprintReadOnly)
 	float Factor;
 
 	/**
+	 * %method
 	 * @desc
 	 * 根据 XYZ 计算出 在 Blocks 数组中的 index
 	 * Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X		
@@ -92,7 +96,7 @@ public:
 	int GetBlockIndex(int X, int Y, int Z);
 
     /**
-     * % method
+     * %method
      * @desc
      * 根据 Blocks 数组的 Index 值计算对应的 X 值
      * @param Index
@@ -104,7 +108,7 @@ public:
 	int GetBlockXFromIndex(int Index);
 
     /**
-     * % method
+     * %method
      * @desc
      * 根据 Blocks 数组的 Index 值计算对应的 Y 值
      * @param Index
@@ -116,7 +120,7 @@ public:
 	int GetBlockYFromIndex(int Index);
 
     /**
-     * % method
+     * %method
      * @desc
      * 根据 Blocks 数组的 Index 值计算对应的 Z 值
      * @param Index
@@ -145,28 +149,41 @@ private:
 	void GenerateMesh();
 
 	/**
-	 * @desc 将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
-	 * @param Direction 需要渲染的是哪个面
-	 * @param InPosition Block 的世界位置
+	 * %method
+	 * @desc
+	 * 将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
+	 * @param Direction
+	 * 需要渲染的是哪个面
+	 * @param InPosition
+	 * Block 的世界位置
 	 */
 	void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition);
 
 	/**
-	 * @desc 计算传入面上各个顶点的世界坐标 
-	 * @param Direction 传入的是哪个面 
-	 * @param InPosition Block 的世界坐标
-	 * @return 构成一个 Block 的所有顶点的世界坐标
+	 * %method
+	 * @desc
+	 * 计算传入面上各个顶点的世界坐标 
+	 * @param Direction
+	 * 传入的是哪个面 
+	 * @param InPosition
+	 * Block 的世界坐标
+	 * @return
+	 * 构成一个 Block 的所有顶点的世界坐标
 	 */
 	TArray<FVector> GetFaceVertices(EFaceDirection Direction, const FVector& InPosition);
 
 	/**
-	 * @desc 是否要生成面
+	 * %method
+	 * @desc
+	 * 是否要生成面
 	 * @return 
 	 */
 	bool ShouldCreateFace(const FVector& InPosition);
 
 	/**
-	 * @desc 获得相邻坐标 
+	 * %method
+	 * @desc
+	 * 获得相邻坐标 
 	 * @param Direction  
 	 * @param InPosition 
 	 * @return 

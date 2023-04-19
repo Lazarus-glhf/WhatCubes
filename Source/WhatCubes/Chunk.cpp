@@ -21,7 +21,7 @@ void AChunk::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/** 设定区块由多少个 Block 组成，每个 Block 都被包含在 Blocks 数组中，并记录了其种类 */
+	// 设定区块由多少个 Block 组成，每个 Block 都被包含在 Blocks 数组中，并记录了其种类
 	Blocks.SetNum(RenderChunkSizeXY * RenderChunkSizeXY * RenderChunkSizeXY);
 
 	CreateBlocks(Factor);
@@ -40,20 +40,20 @@ void AChunk::Tick(float DeltaTime)
 
 void AChunk::CreateBlocks(float InFactor)
 {
-	/** 获取 Chunk 坐标 */
+	// 获取 Chunk 坐标
 	const FVector ActorLocation = GetActorLocation();
 
 	for (int X = 0; X < RenderChunkSizeXY; X++)
 	{
 		for (int Y = 0; Y < RenderChunkSizeXY; Y++)
 		{
-			/** 生成 Block 的实际坐标 */ 
+			// 生成 Block 的实际坐标
 			const float XPos = X * 100 + floor(ActorLocation.X);
 			const float YPos = Y * 100 + floor(ActorLocation.Y);
-			/** 噪声 */
+			// 噪声
 			const float ZPos = floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor));
 
-			/** 将 Chunk 内 ZPos 及以下的方块标记为 Stone 需要渲染，否则标记为 Air 无需渲染 */
+			// 将 Chunk 内 ZPos 及以下的方块标记为 Stone 需要渲染，否则标记为 Air 无需渲染
 			for (int Z = 0; Z < RenderChunkSizeXY; Z++)
 			{
 				if (Z <= ZPos) 
@@ -72,16 +72,18 @@ void AChunk::CreateBlocks(float InFactor)
 void AChunk::GenerateMesh()
 {
 	const int IndexBound = GetBlockIndex(RenderChunkSizeXY - 1, RenderChunkSizeXY - 1, RenderChunkSizeXY - 1) + 1;
+
+	// 遍历 Blocks
 	for (int Index = 0; Index != IndexBound; ++Index)
 	{
 		const int X = GetBlockXFromIndex(Index);
 		const int Y = GetBlockYFromIndex(Index);
 		const int Z = GetBlockZFromIndex(Index);
 
-		/** 若为实体方块 */
+		// 若为实体方块
 		if (Blocks[Index] > EBlockType::Air)
 		{
-			/** 遍历六个面 */
+			// 遍历六个面
 			for (int i = 0; i < 6; ++i)
 			{
 				const EFaceDirection Direction = static_cast<EFaceDirection>(i);
@@ -97,19 +99,19 @@ void AChunk::GenerateMesh()
 
 void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition)
 {
-	/** 添加顶点坐标 */
+	// 添加顶点坐标
 	Vertices.Append(GetFaceVertices(Direction, InPosition));
 
-	/** 添加顶点索引 */
+	// 添加顶点索引
 	const int VerticesNum = Vertices.Num();
 	Triangles.Append({ VerticesNum + 0, VerticesNum + 3, VerticesNum + 1, VerticesNum + 1, VerticesNum + 3, VerticesNum + 2 });
 
-	/** 添加顶点颜色 */
+	// 添加顶点颜色
 	const int alpha = static_cast<int>(Direction) * 255 / 6;	// RGBA 0 ~ 255
 	FColor Color = FColor(alpha, alpha, alpha, alpha);
 	BlockVertexColors.Append({Color, Color, Color, Color});
 
-	/** 添加 UV */
+	// 添加 UV
 	UV0.Append(BlockUV);
 }
 
@@ -117,12 +119,12 @@ void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition
 {
 	TArray<FVector> FaceVertices;
 
-	/** 每个面需要 4 个索引构成 2 个三角形，所以需要 * 4，即步长为 4 */
+	// 每个面需要 4 个索引构成 2 个三角形，所以需要 * 4，即步长为 4
 	const int StartIndex = static_cast<int>(Direction) * 4;
 
 	for (int i = StartIndex; i < StartIndex + 4; ++i)
 	{
-		/** 将此顶点的世界坐标加入到数组中 */
+		// 将此顶点的世界坐标加入到数组中
 		FaceVertices.Add(BlockVertices[BlockTriangles[i]] + InPosition);
 	}
 

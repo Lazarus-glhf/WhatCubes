@@ -8,7 +8,7 @@
 #include "MCGameMode.generated.h"
 
 /**
- * 
+ * %class
  */
 UCLASS()
 class WHATCUBES_API AMCGameMode : public AGameModeBase
@@ -24,6 +24,7 @@ public:
 	AMCGameMode();
 
 	/**
+	 * %member
 	 * @desc 维护的 Chunk 数量，由 RenderingRange 决定
 	 */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
@@ -49,7 +50,8 @@ public:
 	 * %method
 	 * @desc
 	 * 每 Tick 都会触发，根据 ActorLocation 更新 ChunkLocation
-	 * @return 当 Player 移动一段距离后返回 true
+	 * @return
+	 * 当 Player 移动一段距离后返回 true
 	 */
 	UFUNCTION()
 	bool UpdateLocation();

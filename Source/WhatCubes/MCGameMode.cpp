@@ -64,7 +64,7 @@ void AMCGameMode::AddChunk()
 					AllChunks.Add(ActualLoc, Ref);
 				}
 			}
-			if (Y < ChunkNum + ChunkLocation.Y) { Y++;}
+			if (Y < ChunkNum + ChunkLocation.Y) { Y++; }
 			else { Y--; }
 		}
 		if (X < ChunkNum + ChunkLocation.X) { X++; }
