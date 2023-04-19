@@ -71,28 +71,26 @@ void AChunk::CreateBlocks(float InFactor)
 
 void AChunk::GenerateMesh()
 {
-	/** 遍历 Blocks */
-	for (int X = 0; X < RenderChunkSizeXY; ++X)
+	const int IndexBound = GetBlockIndex(RenderChunkSizeXY - 1, RenderChunkSizeXY - 1, RenderChunkSizeXY - 1) + 1;
+	for (int Index = 0; Index != IndexBound; ++Index)
 	{
-		for (int Y = 0; Y < RenderChunkSizeXY; ++Y)
+		const int X = GetBlockXFromIndex(Index);
+		const int Y = GetBlockYFromIndex(Index);
+		const int Z = GetBlockZFromIndex(Index);
+
+		/** 若为实体方块 */
+		if (Blocks[Index] > EBlockType::Air)
 		{
-			for (int Z = 0; Z < RenderChunkSizeXY; ++Z)
+			/** 遍历六个面 */
+			for (int i = 0; i < 6; ++i)
 			{
-				/** 若为实体方块 */
-				 if (Blocks[GetBlockIndex(X, Y, Z)] > EBlockType::Air )
-				 {
-				 	/** 遍历六个面 */
-					 for (int i = 0; i < 6; ++i)
-					 {
-					 	const EFaceDirection Direction = static_cast<EFaceDirection>(i);
-					 	FVector BlockPos = FVector(X, Y, Z);
-					 	if (ShouldCreateFace(GetPositionInDirection(Direction, BlockPos)))
-					 	{
-					 		CreateBlockFace(Direction, BlockPos * 100);
-					 	}
-					 }
-				 }
-			}
+				const EFaceDirection Direction = static_cast<EFaceDirection>(i);
+				FVector BlockPos = FVector(X, Y, Z);
+				if (ShouldCreateFace(GetPositionInDirection(Direction, BlockPos)))
+				{
+					CreateBlockFace(Direction, BlockPos * 100);
+				}
+		    }
 		}
 	}
 }
@@ -133,7 +131,23 @@ void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition
 
 int AChunk::GetBlockIndex(int X, int Y, int Z)
 {
-	return  X + Y * RenderChunkSizeXY + Z * RenderChunkSizeXY * RenderChunkSizeXY;
+	return X + RenderChunkSizeXY * (Y + RenderChunkSizeXY * Z);
+	// return X + Y * RenderChunkSizeXY + Z * RenderChunkSizeXY * RenderChunkSizeXY;
+}
+
+int AChunk::GetBlockXFromIndex(int Index)
+{
+	return Index % RenderChunkSizeXY;
+}
+
+int AChunk::GetBlockYFromIndex(int Index)
+{
+	return Index / RenderChunkSizeXY % RenderChunkSizeXY;
+}
+
+int AChunk::GetBlockZFromIndex(int Index)
+{
+	return Index / (RenderChunkSizeXY * RenderChunkSizeXY) % RenderChunkSizeXY;
 }
 
 bool AChunk::ShouldCreateFace(const FVector& InPosition)

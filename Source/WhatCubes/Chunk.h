@@ -91,6 +91,42 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int GetBlockIndex(int X, int Y, int Z);
 
+    /**
+     * % method
+     * @desc
+     * 根据 Blocks 数组的 Index 值计算对应的 X 值
+     * @param Index
+     * Blocks 数组的 Index 值
+     * @return
+     * 对应的 X 值
+     */
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+	int GetBlockXFromIndex(int Index);
+
+    /**
+     * % method
+     * @desc
+     * 根据 Blocks 数组的 Index 值计算对应的 Y 值
+     * @param Index
+     * Blocks 数组的 Index 值
+     * @return
+     * 对应的 Y 值
+     */
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+	int GetBlockYFromIndex(int Index);
+
+    /**
+     * % method
+     * @desc
+     * 根据 Blocks 数组的 Index 值计算对应的 Z 值
+     * @param Index
+     * Blocks 数组的 Index 值
+     * @return
+     * 对应的 Z 值
+     */
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+	int GetBlockZFromIndex(int Index);
+
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void SetBlockMaterial();
 
