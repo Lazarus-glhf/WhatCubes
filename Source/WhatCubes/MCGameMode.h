@@ -69,6 +69,9 @@ public:
 	 */
 	UFUNCTION()
 	void RemoveChunk();
+
+	UFUNCTION(BlueprintNativeEvent)
+	AChunk* GenerateChunk(const FVector& Location);
 	
 private:
 	/**

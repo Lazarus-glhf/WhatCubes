@@ -60,7 +60,7 @@ void AMCGameMode::AddChunk()
 				FVector SpawnLoc = FVector(ActualLoc, 0);
 				if (!AllChunks.Contains(ActualLoc))
 				{
-					AChunk* Ref = GetWorld()->SpawnActor<AChunk>(SpawnLoc, FRotator());
+					AChunk* Ref = GenerateChunk(SpawnLoc);
 					AllChunks.Add(ActualLoc, Ref);
 				}
 			}
@@ -83,4 +83,9 @@ void AMCGameMode::RemoveChunk()
 			AllChunks.Remove(key.Key);
 		}
 	}
+}
+
+AChunk* AMCGameMode::GenerateChunk_Implementation(const FVector& Location)
+{
+	return GetWorld()->SpawnActor<AChunk>(Location, FRotator());
 }
