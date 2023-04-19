@@ -62,7 +62,7 @@ public:
 		FVector2D(1, 1)
 	};
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	TArray<FColor> BlockVertexColors;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
@@ -71,9 +71,15 @@ public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	TArray<int> Triangles;
 
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	TArray<FVector2D> UV0;
+	
 	UPROPERTY(BlueprintReadOnly)
 	int RenderChunkSizeXY;
 
+	/**
+	 * @desc 噪声指数，建议 0.01 ~ 0.00001
+	 */
 	UPROPERTY(BlueprintReadOnly)
 	float Factor;
 
@@ -84,6 +90,9 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int GetBlockIndex(int X, int Y, int Z);
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void SetBlockMaterial();
 
 protected:
 	// Called when the game starts or when spawned

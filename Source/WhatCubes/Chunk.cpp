@@ -28,7 +28,8 @@ void AChunk::BeginPlay()
 
 	GenerateMesh();
 
-	Mesh->CreateMeshSection(0, Vertices, Triangles, TArray({FVector()}), BlockUV, BlockVertexColors, TArray({FProcMeshTangent()}), false);
+	Mesh->CreateMeshSection(0, Vertices, Triangles, TArray({FVector()}), UV0, BlockVertexColors, TArray({FProcMeshTangent()}), false);
+	SetBlockMaterial();
 }
 
 // Called every frame
@@ -106,8 +107,12 @@ void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition
 	Triangles.Append({ VerticesNum + 0, VerticesNum + 3, VerticesNum + 1, VerticesNum + 1, VerticesNum + 3, VerticesNum + 2 });
 
 	/** 添加顶点颜色 */
-	// float color = static_cast<float>(Direction) / 5;
-	// BlockVertexColors.Append(TArray({ FColor(0, 0, 0, color), FColor(), FColor(), FColor() }));
+	const int alpha = static_cast<int>(Direction) * 255 / 6;	// RGBA 0 ~ 255
+	FColor Color = FColor(alpha, alpha, alpha, alpha);
+	BlockVertexColors.Append({Color, Color, Color, Color});
+
+	/** 添加 UV */
+	UV0.Append(BlockUV);
 }
 
  TArray<FVector> AChunk::GetFaceVertices(EFaceDirection Direction, const FVector& InPosition)
