@@ -1,0 +1,31 @@
+name: docs-ci
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  Euphoria:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clone Euphoria source codes
+      run: git clone https://github.com/Yescafe/Euphoria
+
+    - name: Build Euphoria and use Euphoria to generate docs
+      run: cd Euphoria && cargo run -- -s ../Source -d ../Docs
+
+    - name: Commit the docs and push
+      uses: EndBug/add-and-commit@v9.1.1
+      with:
+        add: 'Docs'
+        default_author: github_actions
+        message: "docs: update docs with Euphoria"
