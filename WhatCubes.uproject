@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"EngineAssociation": "5.1",
 	"Category": "",
-	"Description": "",
+	"briefription": "",
 	"Modules": [
 		{
 			"Name": "WhatCubes",
