@@ -6,96 +6,220 @@
 
 <body>
 <div class="container">
-<h1 class="heading1">Chunk</h1>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
 <h2 class="heading2">Members</h2>
-<div class="member-item-container" id="TArray_FVector__BlockVertices_"><pre class="member-declare-container"><code>TArray<span><</span>FVector<span>></span> BlockVertices {</code></pre>
+<div class="member-item-container" id="v_TArray_FVector__BlockVertices_">
+<h3 class="heading3">BlockVertices</h3>
+<pre class="member-declare-container">
+<code>TArray<span><</span>FVector<span>></span> BlockVertices;</code>
+</pre>
 <p class="member-uproperty">It is a UPROPERTY.</p>
-<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">一个 Block 里 8 个顶点的相对坐标</p></div></div>
+<div class="member-desc-container">
+<p class="member-desc">一个 Block 里 8 个顶点的相对坐标</p>
+</div>
+</div>
 
-<div class="member-item-container" id="TArray_int32__BlockTriangles_"><pre class="member-declare-container"><code>TArray<span><</span>int32<span>></span> BlockTriangles {</code></pre>
+<div class="member-item-container" id="v_TArray_int32__BlockTriangles_">
+<h3 class="heading3">BlockTriangles</h3>
+<pre class="member-declare-container">
+<code>TArray<span><</span>int32<span>></span> BlockTriangles;</code>
+</pre>
 <p class="member-uproperty">It is a UPROPERTY.</p>
-<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc">构成 Block 的 12 个三角形的顶点的索引</p></div></div>
+<div class="member-desc-container">
+<p class="member-desc">构成 Block 的 12 个三角形的顶点的索引</p>
+</div>
+</div>
 
-<div class="member-item-container" id="float_Factor"><pre class="member-declare-container"><code>float Factor;</code></pre>
+<div class="member-item-container" id="v_float_Factor">
+<h3 class="heading3">Factor</h3>
+<pre class="member-declare-container">
+<code>float Factor;</code>
+</pre>
 <p class="member-uproperty">It is a UPROPERTY.</p>
-<div class="member-desc-container"><h3 class="heading3">Desc</h3><p class="member-desc"></p></div></div>
+<div class="member-desc-container">
+<p class="member-desc"></p>
+</div>
+</div>
 
 
 <h2 class="heading2">Methods</h2>
-<p>method: @Desc:
-根据 XYZ 计算出 在 Blocks 数组中的 index
-Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X
-@Params: 
-</p><p>method: @Desc:
-根据 Blocks 数组的 Index 值计算对应的 X 值
-@Returns:
-Some(Desc { description: "对应的 X 值" })
-@Params: 
-@name:
-Index
-@desc:
-Desc { description: "Blocks 数组的 Index 值" }
-</p><p>method: @Desc:
-根据 Blocks 数组的 Index 值计算对应的 Y 值
-@Returns:
-Some(Desc { description: "对应的 Y 值" })
-@Params: 
-@name:
-Index
-@desc:
-Desc { description: "Blocks 数组的 Index 值" }
-</p><p>method: @Desc:
-根据 Blocks 数组的 Index 值计算对应的 Z 值
-@Returns:
-Some(Desc { description: "对应的 Z 值" })
-@Params: 
-@name:
-Index
-@desc:
-Desc { description: "Blocks 数组的 Index 值" }
-</p><p>method: @Desc:
-将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
-@Params: 
-@name:
-Direction
-@desc:
-Desc { description: "需要渲染的是哪个面" }
-@name:
-InPosition
-@desc:
-Desc { description: "Block 的世界位置" }
-</p><p>method: @Desc:
-计算传入面上各个顶点的世界坐标
-@Returns:
-Some(Desc { description: "构成一个 Block 的所有顶点的世界坐标" })
-@Params: 
-@name:
-Direction
-@desc:
-Desc { description: "传入的是哪个面" }
-@name:
-InPosition
-@desc:
-Desc { description: "Block 的世界坐标" }
-</p><p>method: @Desc:
-是否要生成面
-@Returns:
-Some(Desc { description: "" })
-@Params: 
-</p><p>method: @Desc:
-获得相邻坐标
-@Returns:
-Some(Desc { description: "" })
-@Params: 
-@name:
-Direction
-@desc:
-Desc { description: "" }
-@name:
-InPosition
-@desc:
-Desc { description: "" }
-</p>
+<div id="f_int_GetBlockIndexint_X_int_Y_int_Z" class="method-item-container">
+<h3 class="heading3">GetBlockIndex</h3>
+<pre class="method-signature-container">
+<code>int GetBlockIndex(int X, int Y, int Z);</code>
+</pre><p class="method-ufunction">It is a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">根据 XYZ 计算出 在 Blocks 数组中的 index</p>
+<p class="method-desc">Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X</p>
+</div>
+</div>
+<div id="f_int_GetBlockXFromIndexint_Index" class="method-item-container">
+<h3 class="heading3">GetBlockXFromIndex</h3>
+<pre class="method-signature-container">
+<code>int GetBlockXFromIndex(int Index);</code>
+</pre><p class="method-ufunction">It is a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">根据 Blocks 数组的 Index 值计算对应的 X 值</p>
+</div>
+<h4 class="heading4">returns</h4>
+<p class="method-desc">对应的 X 值</p>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Index</td>
+<td><p class="">Blocks 数组的 Index 值</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_int_GetBlockYFromIndexint_Index" class="method-item-container">
+<h3 class="heading3">GetBlockYFromIndex</h3>
+<pre class="method-signature-container">
+<code>int GetBlockYFromIndex(int Index);</code>
+</pre><p class="method-ufunction">It is a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">根据 Blocks 数组的 Index 值计算对应的 Y 值</p>
+</div>
+<h4 class="heading4">returns</h4>
+<p class="method-desc">对应的 Y 值</p>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Index</td>
+<td><p class="">Blocks 数组的 Index 值</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_int_GetBlockZFromIndexint_Index" class="method-item-container">
+<h3 class="heading3">GetBlockZFromIndex</h3>
+<pre class="method-signature-container">
+<code>int GetBlockZFromIndex(int Index);</code>
+</pre><p class="method-ufunction">It is a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">根据 Blocks 数组的 Index 值计算对应的 Z 值</p>
+</div>
+<h4 class="heading4">returns</h4>
+<p class="method-desc">对应的 Z 值</p>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Index</td>
+<td><p class="">Blocks 数组的 Index 值</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition" class="method-item-container">
+<h3 class="heading3">CreateBlockFace</h3>
+<pre class="method-signature-container">
+<code>void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition);</code>
+</pre><p class="method-ufunction">It is not a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles</p>
+</div>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Direction</td>
+<td><p class="">需要渲染的是哪个面</p>
+</td>
+</tr>
+<tr>
+<td>InPosition</td>
+<td><p class="">Block 的世界位置</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition" class="method-item-container">
+<h3 class="heading3">GetFaceVertices</h3>
+<pre class="method-signature-container">
+<code>TArray<span><</span>FVector<span>></span> GetFaceVertices(EFaceDirection Direction, const FVector& InPosition);</code>
+</pre><p class="method-ufunction">It is not a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">计算传入面上各个顶点的世界坐标</p>
+</div>
+<h4 class="heading4">returns</h4>
+<p class="method-desc">构成一个 Block 的所有顶点的世界坐标</p>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Direction</td>
+<td><p class="">传入的是哪个面</p>
+</td>
+</tr>
+<tr>
+<td>InPosition</td>
+<td><p class="">Block 的世界坐标</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_bool_ShouldCreateFaceconst_FVector_InPosition" class="method-item-container">
+<h3 class="heading3">ShouldCreateFace</h3>
+<pre class="method-signature-container">
+<code>bool ShouldCreateFace(const FVector& InPosition);</code>
+</pre><p class="method-ufunction">It is not a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">是否要生成面</p>
+</div>
+<h4 class="heading4">returns</h4>
+<p class="method-desc">MISSING_RET_DESC</p>
+</div>
+<div id="f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition" class="method-item-container">
+<h3 class="heading3">GetPositionInDirection</h3>
+<pre class="method-signature-container">
+<code>FVector GetPositionInDirection(const EFaceDirection Direction, const FVector& InPosition);</code>
+</pre><p class="method-ufunction">It is not a UFUNCTION.</p>
+<div class="method-desc-container">
+<p class="method-desc">获得相邻坐标</p>
+</div>
+<h4 class="heading4">returns</h4>
+<p class="method-desc">MISSING_RET_DESC</p>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Direction</td>
+<td>MISSING_PARAM_DESC</td>
+</tr>
+<tr>
+<td>InPosition</td>
+<td>MISSING_PARAM_DESC</td>
+</tr>
+</tbody></table></center>
+</div>
+
 </div>
 </body>
 

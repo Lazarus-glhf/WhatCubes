@@ -11,24 +11,32 @@
     width: 80%;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
+p, pre {
+    line-height: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 16px 0;
 }
 
 .heading1 {
     font-size: 3rem;
+    margin: 12px 0;
 }
 
 .heading2 {
     font-size: 2.5rem;
+    margin: 10px 0;
 }
 
 .heading3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin: 8px 0;
 }
 
 .heading4 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin: 6px 0;
 }
 
 code {
@@ -36,25 +44,44 @@ code {
     font-family: "Fira Code", meslo, monaco, "Cascadia Code", consolas, monospace;
 }
 
-/* member items */
-
-.member-item-container {
-    margin-bottom: 2rem;
+table {
+    margin-top: 16px;
 }
 
-.member-declare-container {
+table, thead, tbody, tr, th, td {
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+    padding: 10px 20px;
+}
+
+tr {
+    text-align: left;
+}
+
+/* member items */
+
+.member-item-container,
+.method-item-container {
+    margin-bottom: 3rem;
+}
+
+.member-declare-container,
+.method-signature-container {
     background: lightgray;
     padding: 10px;
 }
 
-.member-uproperty {
+.member-uproperty,
+.method-ufunction {
     font-weight: 1000;
 }
 
-.member-desc-container {
+.member-desc-container,
+.method-desc-container {
 }
 
-.member-desc {
+.member-desc,
+.method-desc {
 }
 
 
