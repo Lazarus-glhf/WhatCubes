@@ -7,6 +7,7 @@
 #include "ProceduralMeshComponent.h"
 #include "Data/Enum/BlockType.h"
 #include "Data/Enum/FaceDirection.h"
+#include "Data/Structs/FMeshData.h"
 #include "Chunk.generated.h"
 
 UCLASS()
@@ -63,21 +64,12 @@ public:
 		FVector2D(0, 1),
 		FVector2D(1, 1)
 	};
-
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	TArray<FColor> BlockVertexColors;
-
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	TArray<FVector> Vertices;
-
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	TArray<int> Triangles;
-
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	TArray<FVector2D> UV0;
 	
 	UPROPERTY(BlueprintReadOnly)
 	int RenderChunkSizeXY;
+
+	UPROPERTY()
+	TMap<int, FMeshData> MeshData;
 
 	/**
 	 * %member
@@ -157,7 +149,7 @@ private:
 	 * @param InPosition
 	 * Block 的世界位置
 	 */
-	void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition);
+	void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition, const int BlockId = 0);
 
 	/**
 	 * %method

@@ -28,7 +28,19 @@ void AChunk::BeginPlay()
 
 	GenerateMesh();
 
-	Mesh->CreateMeshSection(0, Vertices, Triangles, TArray({FVector()}), UV0, BlockVertexColors, TArray({FProcMeshTangent()}), false);
+	TArray<int> Keys;
+	MeshData.GetKeys(Keys);
+	
+	for (const auto& Key : Keys)
+	{
+		const FMeshData* TempMeshData =  MeshData.Find(Key);
+		if (TempMeshData)
+		{
+			Mesh->CreateMeshSection(Key, TempMeshData->Vertices, TempMeshData->Triangles, TArray({FVector()}), TempMeshData->UV0, TempMeshData->BlockVertexColors, TArray({FProcMeshTangent()}), false);
+		}
+	}
+
+	// Call in Blueprint
 	SetBlockMaterial();
 }
 
@@ -97,22 +109,30 @@ void AChunk::GenerateMesh()
 	}
 }
 
-void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition)
+void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition, const int BlockId)
 {
+	FMeshData* TempData = MeshData.Find(BlockId);
+
+	if (!TempData)
+	{
+		TempData = &MeshData.Add(BlockId, FMeshData());
+	}
 	// 添加顶点坐标
-	Vertices.Append(GetFaceVertices(Direction, InPosition));
+	TempData->Vertices.Append(GetFaceVertices(Direction, InPosition));
 
 	// 添加顶点索引
-	const int VerticesNum = Vertices.Num();
-	Triangles.Append({ VerticesNum + 0, VerticesNum + 3, VerticesNum + 1, VerticesNum + 1, VerticesNum + 3, VerticesNum + 2 });
+	const int VerticesNum =TempData->Vertices.Num();
+	TempData->Triangles.Append({ VerticesNum + 0, VerticesNum + 3, VerticesNum + 1, VerticesNum + 1, VerticesNum + 3, VerticesNum + 2 });
 
 	// 添加顶点颜色
 	const int alpha = static_cast<int>(Direction) * 255 / 6;	// RGBA 0 ~ 255
 	FColor Color = FColor(alpha, alpha, alpha, alpha);
-	BlockVertexColors.Append({Color, Color, Color, Color});
+	TempData->BlockVertexColors.Append({Color, Color, Color, Color});
 
 	// 添加 UV
-	UV0.Append(BlockUV);
+	TempData->UV0.Append(BlockUV);
+
+	MeshData.Add(BlockId, *TempData);
 }
 
  TArray<FVector> AChunk::GetFaceVertices(EFaceDirection Direction, const FVector& InPosition)
