@@ -6,7 +6,7 @@
 
 <body>
 <div class="container">
-<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition_const_int_BlockId__0">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
 <h2 class="heading2">Members</h2>
 <div class="member-item-container" id="v_TArray_FVector__BlockVertices_">
 <h3 class="heading3">BlockVertices</h3>
@@ -125,10 +125,10 @@
 </tr>
 </tbody></table></center>
 </div>
-<div id="f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition" class="method-item-container">
+<div id="f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition_const_int_BlockId__0" class="method-item-container">
 <h3 class="heading3">CreateBlockFace</h3>
 <pre class="method-signature-container">
-<code>void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition);</code>
+<code>void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition, const int BlockId = 0);</code>
 </pre><p class="method-ufunction">It is not a UFUNCTION.</p>
 <div class="method-desc-container">
 <p class="method-desc">将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles</p>
