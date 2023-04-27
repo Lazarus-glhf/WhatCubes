@@ -124,7 +124,7 @@ public:
 	int GetBlockZFromIndex(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	void SetBlockMaterial();
+	void SetBlockMaterial(int BlockId);
 
 protected:
 	// Called when the game starts or when spawned

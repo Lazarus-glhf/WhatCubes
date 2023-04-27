@@ -9,5 +9,6 @@ enum class EBlockType : uint8
 	Air,
 	Stone,
 	Dirt,
-	Grass
+	Grass,
+	BedRock
 };

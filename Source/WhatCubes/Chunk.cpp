@@ -31,17 +31,15 @@ void AChunk::BeginPlay()
 	TArray<int> Keys;
 	MeshData.GetKeys(Keys);
 	
-	for (const auto& Key : Keys)
+	for (const int& Key : Keys)
 	{
-		const FMeshData* TempMeshData =  MeshData.Find(Key);
-		if (TempMeshData)
+		if (const FMeshData* TempMeshData =  MeshData.Find(Key); TempMeshData)
 		{
 			Mesh->CreateMeshSection(Key, TempMeshData->Vertices, TempMeshData->Triangles, TArray({FVector()}), TempMeshData->UV0, TempMeshData->BlockVertexColors, TArray({FProcMeshTangent()}), false);
+			// Call in Blueprint
+			SetBlockMaterial(Key);
 		}
 	}
-
-	// Call in Blueprint
-	SetBlockMaterial();
 }
 
 // Called every frame
@@ -65,16 +63,24 @@ void AChunk::CreateBlocks(float InFactor)
 			// 噪声
 			const float ZPos = floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor));
 
-			// 将 Chunk 内 ZPos 及以下的方块标记为 Stone 需要渲染，否则标记为 Air 无需渲染
+			// 根据 Z 生成不同的方块
 			for (int Z = 0; Z < RenderChunkSizeXY; Z++)
 			{
-				if (Z <= ZPos) 
+				if (Z > ZPos)
 				{
-					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Stone;
+					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Air;
+				}
+				else if (Z == 0 && Z < ZPos - 3)
+				{
+					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::BedRock;
+				}
+				else if (Z > ZPos - 3 && Z <= ZPos)
+				{
+					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Grass;
 				}
 				else
 				{
-					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Air;
+					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Stone;
 				}
 			}
 		}
@@ -102,7 +108,7 @@ void AChunk::GenerateMesh()
 				FVector BlockPos = FVector(X, Y, Z);
 				if (ShouldCreateFace(GetPositionInDirection(Direction, BlockPos)))
 				{
-					CreateBlockFace(Direction, BlockPos * 100);
+					CreateBlockFace(Direction, BlockPos * 100, static_cast<int>(Blocks[Index]));
 				}
 		    }
 		}
