@@ -73,7 +73,9 @@ public:
 
 	/**
 	 * %member
-	 * @brief 噪声指数，建议 0.01 ~ 0.00001
+	 * @brief
+	 * 噪声指数，建议 0.01 ~ 0.00001
+	 * 下一行内容
 	 */
 	UPROPERTY(BlueprintReadOnly)
 	float Factor;
@@ -91,10 +93,8 @@ public:
      * %method
      * @brief
      * 根据 Blocks 数组的 Index 值计算对应的 X 值
-     * @param Index
-     * Blocks 数组的 Index 值
-     * @return
-     * 对应的 X 值
+     * @param Index Blocks 数组的 Index 值
+     * @return 对应的 X 值
      */
     UFUNCTION(BlueprintCallable, BlueprintPure)
 	int GetBlockXFromIndex(int Index);

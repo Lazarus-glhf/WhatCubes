@@ -22,7 +22,7 @@ void AChunk::BeginPlay()
 	Super::BeginPlay();
 
 	// 设定区块由多少个 Block 组成，每个 Block 都被包含在 Blocks 数组中，并记录了其种类
-	Blocks.SetNum(RenderChunkSizeXY * RenderChunkSizeXY * RenderChunkSizeXY);
+	Blocks.Init(EBlockType::Air, RenderChunkSizeXY * RenderChunkSizeXY * RenderChunkSizeXY);
 
 	CreateBlocks(Factor);
 
@@ -61,28 +61,23 @@ void AChunk::CreateBlocks(float InFactor)
 			const float XPos = X * 100 + floor(ActorLocation.X);
 			const float YPos = Y * 100 + floor(ActorLocation.Y);
 			// 噪声
-			const float ZPos = floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor));
+			const int ZPeak = static_cast<int>(floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor)));
 
 			// 根据 Z 生成不同的方块
-			for (int Z = 0; Z < RenderChunkSizeXY; Z++)
+			Blocks[GetBlockIndex(X, Y, ZPeak)] = EBlockType::Grass;
+			for (int Z = ZPeak - 1, layer = 0; Z >= 0; Z--, layer++)
 			{
-				if (Z > ZPos)
+				const int BlockIndex = GetBlockIndex(X, Y, Z);
+				if (layer < 2)
 				{
-					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Air;
-				}
-				else if (Z == 0 && Z < ZPos - 3)
-				{
-					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::BedRock;
-				}
-				else if (Z > ZPos - 3 && Z <= ZPos)
-				{
-					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Grass;
+					Blocks[BlockIndex] = EBlockType::Dirt;
 				}
 				else
 				{
-					Blocks[GetBlockIndex(X, Y, Z)] = EBlockType::Stone;
+					Blocks[BlockIndex] = EBlockType::Stone;
 				}
 			}
+			Blocks[GetBlockIndex(X, Y, 0)] = EBlockType::BedRock;
 		}
 	}
 }
@@ -181,7 +176,7 @@ int AChunk::GetBlockZFromIndex(int Index)
 bool AChunk::ShouldCreateFace(const FVector& InPosition)
 {
 	// 判断输入索引是否为边界值，避免越界
-	if (InPosition.X < 0 || InPosition.Y < 0 || InPosition.Z <0 || InPosition.Z >= RenderChunkSizeXY || InPosition.X >= RenderChunkSizeXY || InPosition.Y >= RenderChunkSizeXY)
+	if (InPosition.X < 0 || InPosition.Y < 0 || InPosition.Z < 0 || InPosition.Z >= RenderChunkSizeXY || InPosition.X >= RenderChunkSizeXY || InPosition.Y >= RenderChunkSizeXY)
 	{
 		return true;	
 	}
