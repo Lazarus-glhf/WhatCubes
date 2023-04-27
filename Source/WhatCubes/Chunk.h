@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the briefription page of Project Settings.
 
 #pragma once
 
@@ -26,7 +26,7 @@ public:
 
 	/**
 	 * %member
-	 * @desc
+	 * @brief
 	 * 一个 Block 里 8 个顶点的相对坐标
 	 */
 	UPROPERTY(BlueprintReadOnly)
@@ -43,7 +43,7 @@ public:
 
 	/**
 	 * %member
-	 * @desc
+	 * @brief
 	 * 构成 Block 的 12 个三角形的顶点的索引
 	 */
 	UPROPERTY(BlueprintReadOnly)
@@ -81,14 +81,14 @@ public:
 
 	/**
 	 * %member
-	 * @desc 噪声指数，建议 0.01 ~ 0.00001
+	 * @brief 噪声指数，建议 0.01 ~ 0.00001
 	 */
 	UPROPERTY(BlueprintReadOnly)
 	float Factor;
 
 	/**
 	 * %method
-	 * @desc
+	 * @brief
 	 * 根据 XYZ 计算出 在 Blocks 数组中的 index
 	 * Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X		
 	 */
@@ -97,7 +97,7 @@ public:
 
     /**
      * %method
-     * @desc
+     * @brief
      * 根据 Blocks 数组的 Index 值计算对应的 X 值
      * @param Index
      * Blocks 数组的 Index 值
@@ -109,7 +109,7 @@ public:
 
     /**
      * %method
-     * @desc
+     * @brief
      * 根据 Blocks 数组的 Index 值计算对应的 Y 值
      * @param Index
      * Blocks 数组的 Index 值
@@ -121,7 +121,7 @@ public:
 
     /**
      * %method
-     * @desc
+     * @brief
      * 根据 Blocks 数组的 Index 值计算对应的 Z 值
      * @param Index
      * Blocks 数组的 Index 值
@@ -150,7 +150,7 @@ private:
 
 	/**
 	 * %method
-	 * @desc
+	 * @brief
 	 * 将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
 	 * @param Direction
 	 * 需要渲染的是哪个面
@@ -161,7 +161,7 @@ private:
 
 	/**
 	 * %method
-	 * @desc
+	 * @brief
 	 * 计算传入面上各个顶点的世界坐标 
 	 * @param Direction
 	 * 传入的是哪个面 
@@ -174,7 +174,7 @@ private:
 
 	/**
 	 * %method
-	 * @desc
+	 * @brief
 	 * 是否要生成面
 	 * @return 
 	 */
@@ -182,7 +182,7 @@ private:
 
 	/**
 	 * %method
-	 * @desc
+	 * @brief
 	 * 获得相邻坐标 
 	 * @param Direction  
 	 * @param InPosition 

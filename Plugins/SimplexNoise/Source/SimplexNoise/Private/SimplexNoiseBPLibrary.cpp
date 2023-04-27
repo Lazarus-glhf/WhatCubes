@@ -353,7 +353,7 @@ float USimplexNoiseBPLibrary::_simplexNoise4D(float x, float y, float z, float w
 	float z0 = z - Z0;
 	float w0 = w - W0;
 
-	// For the 4D case, the simplex is a 4D shape I won't even try to describe.
+	// For the 4D case, the simplex is a 4D shape I won't even try to briefribe.
 	// To find out which of the 24 possible simplices we're in, we need to
 	// determine the magnitude ordering of x0, y0, z0 and w0.
 	// The method below is a good way of finding the ordering of x,y,z,w and
