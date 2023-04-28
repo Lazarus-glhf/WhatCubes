@@ -6,24 +6,40 @@
 
 <body>
 <div class="container">
-<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition_const_int_BlockId__0">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_____FVector100_100_100____FVector100_0_100____FVector100_0_0____FVector100_100_0____FVector0_100_100____FVector0_0_100____FVector0____FVector0_100_0">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_____0_1_2_3__Front____4_0_3_7__Right____5_4_7_6__Back____1_5_6_2__Left____1_0_4_5__Top____3_2_6_7___Down">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition_const_int_BlockId__0">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
 <h2 class="heading2">Members</h2>
-<div class="member-item-container" id="v_TArray_FVector__BlockVertices_">
+<div class="member-item-container" id="v_TArray_FVector__BlockVertices_____FVector100_100_100____FVector100_0_100____FVector100_0_0____FVector100_100_0____FVector0_100_100____FVector0_0_100____FVector0____FVector0_100_0">
 <h3 class="heading3">BlockVertices</h3>
 <pre class="member-declare-container">
 <code>UPROPERTY(BlueprintReadOnly)
-TArray<span><</span>FVector<span>></span> BlockVertices;</code>
+TArray<span><</span>FVector<span>></span> BlockVertices {
+    FVector(100, 100, 100),
+    FVector(100, 0, 100),
+    FVector(100, 0, 0),
+    FVector(100, 100, 0),
+    FVector(0, 100, 100),
+    FVector(0, 0, 100),
+    FVector(0),
+    FVector(0, 100, 0)
+};</code>
 </pre>
 <div class="member-desc-container">
 <p class="member-desc">一个 Block 里 8 个顶点的相对坐标</p>
 </div>
 </div>
 
-<div class="member-item-container" id="v_TArray_int32__BlockTriangles_">
+<div class="member-item-container" id="v_TArray_int32__BlockTriangles_____0_1_2_3__Front____4_0_3_7__Right____5_4_7_6__Back____1_5_6_2__Left____1_0_4_5__Top____3_2_6_7___Down">
 <h3 class="heading3">BlockTriangles</h3>
 <pre class="member-declare-container">
 <code>UPROPERTY(BlueprintReadOnly)
-TArray<span><</span>int32<span>></span> BlockTriangles;</code>
+TArray<span><</span>int32<span>></span> BlockTriangles {
+    0, 1, 2, 3, // Front
+    4, 0, 3, 7, // Right
+    5, 4, 7, 6, // Back
+    1, 5, 6, 2, // Left
+    1, 0, 4, 5, // Top
+    3, 2, 6, 7  // Down
+};</code>
 </pre>
 <div class="member-desc-container">
 <p class="member-desc">构成 Block 的 12 个三角形的顶点的索引</p>
@@ -153,7 +169,7 @@ int GetBlockZFromIndex(int Index);</code>
 <div id="f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition" class="method-item-container">
 <h3 class="heading3">GetFaceVertices</h3>
 <pre class="method-signature-container">
-<code>TArray<FVector> GetFaceVertices(EFaceDirection Direction, const FVector& InPosition);</code>
+<code>TArray<span><</span>FVector<span>></span> GetFaceVertices(EFaceDirection Direction, const FVector& InPosition);</code>
 </pre><div class="method-desc-container">
 <p class="method-desc">计算传入面上各个顶点的世界坐标</p>
 </div>
