@@ -15,22 +15,22 @@ void AMCGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ChunkNum = RenderingRange / ChunkSize;
-	
-	UpdateLocation();
-
-	AddChunk();
+	// ChunkNum = RenderingRange / ChunkSize;
+	//
+	// UpdateLocation();
+	//
+	// AddChunk();
 }
 
 void AMCGameMode::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (UpdateLocation())
-	{
-		AddChunk();
-
-		RemoveChunk();
-	}
+	// if (UpdateLocation())
+	// {
+	// 	AddChunk();
+	//
+	// 	RemoveChunk();
+	// }
 }
 
 bool AMCGameMode::UpdateLocation()
