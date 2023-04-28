@@ -31,4 +31,4 @@ jobs:
       with:
         add: 'Docs'
         default_author: github_actions
-        message: "docs: update docs with Euphoria"
+        message: "docs: update docs with Euphoria $(cd Euphoria && git rev-parse --short HEAD)"
