@@ -61,7 +61,9 @@ void AChunk::CreateBlocks(float InFactor)
 			const float XPos = X * 100 + floor(ActorLocation.X);
 			const float YPos = Y * 100 + floor(ActorLocation.Y);
 			// 噪声
-			const int ZPeak = static_cast<int>(floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor)));
+			const int ZPeak = std::min(
+				1 + static_cast<int>(floor(USimplexNoiseBPLibrary::SimplexNoiseInRange2D(XPos, YPos, 0, RenderChunkSizeXY, InFactor))),
+				RenderChunkSizeXY - 1);
 
 			// 根据 Z 生成不同的方块
 			Blocks[GetBlockIndex(X, Y, ZPeak)] = EBlockType::Grass;
