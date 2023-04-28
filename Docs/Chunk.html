@@ -6,7 +6,7 @@
 
 <body>
 <div class="container">
-<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_____FVector100_100_100____FVector100_0_100____FVector100_0_0____FVector100_100_0____FVector0_100_100____FVector0_0_100____FVector0____FVector0_100_0">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_____0_1_2_3__Front____4_0_3_7__Right____5_4_7_6__Back____1_5_6_2__Left____1_0_4_5__Top____3_2_6_7___Down">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition_const_int_BlockId__0">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">Chunk</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_TArray_FVector__BlockVertices_____FVector100_100_100____FVector100_0_100____FVector100_0_0____FVector100_100_0____FVector0_100_100____FVector0_0_100____FVector0____FVector0_100_0">BlockVertices</a></p><p><a href="#v_TArray_int32__BlockTriangles_____0_1_2_3__Front____4_0_3_7__Right____5_4_7_6__Back____1_5_6_2__Left____1_0_4_5__Top____3_2_6_7___Down">BlockTriangles</a></p><p><a href="#v_float_Factor">Factor</a></p><p><a href="#v_FVector2D_ChunkLocation">ChunkLocation</a></p><h3 class="heading3">Methods</h3><p><a href="#f_int_GetBlockIndexint_X_int_Y_int_Z">GetBlockIndex</a></p><p><a href="#f_int_GetBlockXFromIndexint_Index">GetBlockXFromIndex</a></p><p><a href="#f_int_GetBlockYFromIndexint_Index">GetBlockYFromIndex</a></p><p><a href="#f_int_GetBlockZFromIndexint_Index">GetBlockZFromIndex</a></p><p><a href="#f_void_CreateBlockFaceEFaceDirection_Direction_const_FVector_InPosition_const_int_BlockId__0">CreateBlockFace</a></p><p><a href="#f_TArray_FVector__GetFaceVerticesEFaceDirection_Direction_const_FVector_InPosition">GetFaceVertices</a></p><p><a href="#f_bool_ShouldCreateFaceconst_FVector_InPosition">ShouldCreateFace</a></p><p><a href="#f_FVector_GetPositionInDirectionconst_EFaceDirection_Direction_const_FVector_InPosition">GetPositionInDirection</a></p>
 <h2 class="heading2">Members</h2>
 <div class="member-item-container" id="v_TArray_FVector__BlockVertices_____FVector100_100_100____FVector100_0_100____FVector100_0_0____FVector100_100_0____FVector0_100_100____FVector0_0_100____FVector0____FVector0_100_0">
 <h3 class="heading3">BlockVertices</h3>
@@ -54,6 +54,17 @@ float Factor;</code>
 </pre>
 <div class="member-desc-container">
 <p class="member-desc">噪声指数，建议 0.01 ~ 0.00001</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_FVector2D_ChunkLocation">
+<h3 class="heading3">ChunkLocation</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+FVector2D ChunkLocation;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">Chunk 的坐标</p>
 </div>
 </div>
 
