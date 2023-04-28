@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the briefription page of Project Settings.
+// Fill out your copyright notice in the description page of Project Settings.
 
 #pragma once
 
@@ -26,7 +26,6 @@ public:
 	TArray<EBlockType> Blocks;
 
 	/**
-	 * %member
 	 * @brief
 	 * 一个 Block 里 8 个顶点的相对坐标
 	 */
@@ -43,7 +42,6 @@ public:
 	};
 
 	/**
-	 * %member
 	 * @brief
 	 * 构成 Block 的 12 个三角形的顶点的索引
 	 */
@@ -72,27 +70,19 @@ public:
 	TMap<int, FMeshData> MeshData;
 
 	/**
-	 * %member
-	 * @brief
-	 * 噪声指数，建议 0.01 ~ 0.00001
-	 * 下一行内容
+	 * @brief 噪声指数，建议 0.01 ~ 0.00001
 	 */
 	UPROPERTY(BlueprintReadOnly)
 	float Factor;
 
 	/**
-	 * %method
-	 * @brief
-	 * 根据 XYZ 计算出 在 Blocks 数组中的 index
-	 * Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X		
+	 * @brief 根据 XYZ 计算出 在 Blocks 数组中的 index, Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X		
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int GetBlockIndex(int X, int Y, int Z);
 
     /**
-     * %method
-     * @brief
-     * 根据 Blocks 数组的 Index 值计算对应的 X 值
+     * @brief 根据 Blocks 数组的 Index 值计算对应的 X 值
      * @param Index Blocks 数组的 Index 值
      * @return 对应的 X 值
      */
@@ -100,25 +90,17 @@ public:
 	int GetBlockXFromIndex(int Index);
 
     /**
-     * %method
-     * @brief
-     * 根据 Blocks 数组的 Index 值计算对应的 Y 值
-     * @param Index
-     * Blocks 数组的 Index 值
-     * @return
-     * 对应的 Y 值
+     * @brief 根据 Blocks 数组的 Index 值计算对应的 Y 值
+     * @param Index Blocks 数组的 Index 值
+     * @return 对应的 Y 值
      */
     UFUNCTION(BlueprintCallable, BlueprintPure)
 	int GetBlockYFromIndex(int Index);
 
     /**
-     * %method
-     * @brief
-     * 根据 Blocks 数组的 Index 值计算对应的 Z 值
-     * @param Index
-     * Blocks 数组的 Index 值
-     * @return
-     * 对应的 Z 值
+     * @brief 根据 Blocks 数组的 Index 值计算对应的 Z 值
+     * @param Index Blocks 数组的 Index 值
+     * @return 对应的 Z 值
      */
     UFUNCTION(BlueprintCallable, BlueprintPure)
 	int GetBlockZFromIndex(int Index);
@@ -141,41 +123,27 @@ private:
 	void GenerateMesh();
 
 	/**
-	 * %method
-	 * @brief
-	 * 将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
-	 * @param Direction
-	 * 需要渲染的是哪个面
-	 * @param InPosition
-	 * Block 的世界位置
+	 * @brief 将 Block 一个面的顶点索引和坐标加入 vertices 和 triangles
+	 * @param Direction 需要渲染的是哪个面
+	 * @param InPosition Block 的世界位置
 	 */
 	void CreateBlockFace(EFaceDirection Direction, const FVector& InPosition, const int BlockId = 0);
 
 	/**
-	 * %method
-	 * @brief
-	 * 计算传入面上各个顶点的世界坐标 
-	 * @param Direction
-	 * 传入的是哪个面 
-	 * @param InPosition
-	 * Block 的世界坐标
-	 * @return
-	 * 构成一个 Block 的所有顶点的世界坐标
+	 * @brief 计算传入面上各个顶点的世界坐标 
+	 * @param Direction 传入的是哪个面 
+	 * @param InPosition Block 的世界坐标
+	 * @return 构成一个 Block 的所有顶点的世界坐标
 	 */
 	TArray<FVector> GetFaceVertices(EFaceDirection Direction, const FVector& InPosition);
 
 	/**
-	 * %method
-	 * @brief
-	 * 是否要生成面
-	 * @return 
+	 * @brief 是否要生成面
 	 */
 	bool ShouldCreateFace(const FVector& InPosition);
 
 	/**
-	 * %method
-	 * @brief
-	 * 获得相邻坐标 
+	 * @brief 获得相邻坐标 
 	 * @param Direction  
 	 * @param InPosition 
 	 * @return 

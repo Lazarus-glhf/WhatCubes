@@ -1,11 +1,10 @@
-// Fill out your copyright notice in the briefription page of Project Settings.
+// Fill out your copyright notice in the description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 
 /**
- * %enum
  * @brief
  */
 UENUM(BlueprintType)
