@@ -6,6 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "SimplexNoise/Public/SimplexNoiseBPLibrary.h"
 #include "WhatCubes/Chunk.h"
+#include <vector>
+#include <utility>
 
 // Sets default values
 AWorldManager::AWorldManager()
@@ -83,14 +85,17 @@ void AWorldManager::AddChunk()
 
 void AWorldManager::RemoveChunk()
 {
-	for (auto key : AllChunks)
+	std::vector<std::pair<double, double>> wait_for_del;
+	for (auto Pair : AllChunks)
 	{
-		if (FVector2D::Distance(LastPlayerChunkCoordinate * ChunkSize, key.Key) > RenderingRange)
+		if (FVector2D::Distance(LastPlayerChunkCoordinate * ChunkSize, Pair.Key) > RenderingRange)
 		{
-			AChunk* DelChunk = *AllChunks.Find(key.Key);
-			DelChunk->Destroy();
-			AllChunks.Remove(key.Key);
+			wait_for_del.push_back({Pair.Key.X, Pair.Key.Y});
 		}
+	}
+	for (auto&& coord: wait_for_del)
+	{
+		AllChunks.Remove({coord.first, coord.second});
 	}
 }
 
