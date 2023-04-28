@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Clean old docs
+      run: rm -rf ./Docs
+
     - name: Clone Euphoria source codes
       run: git clone https://github.com/Yescafe/Euphoria
 
