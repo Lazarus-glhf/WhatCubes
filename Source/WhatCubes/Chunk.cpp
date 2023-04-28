@@ -84,7 +84,7 @@ void AChunk::CreateBlocks(float InFactor)
 
 void AChunk::GenerateMesh()
 {
-	const int IndexBound = GetBlockIndex(RenderChunkSizeXY - 1, RenderChunkSizeXY - 1, RenderChunkSizeXY - 1) + 1;
+	const int IndexBound = Blocks.Num();
 
 	// 遍历 Blocks
 	for (int Index = 0; Index != IndexBound; ++Index)
@@ -118,12 +118,13 @@ void AChunk::CreateBlockFace(EFaceDirection Direction, const FVector& InPosition
 	{
 		TempData = &MeshData.Add(BlockId, FMeshData());
 	}
-	// 添加顶点坐标
-	TempData->Vertices.Append(GetFaceVertices(Direction, InPosition));
 
 	// 添加顶点索引
 	const int VerticesNum =TempData->Vertices.Num();
 	TempData->Triangles.Append({ VerticesNum + 0, VerticesNum + 3, VerticesNum + 1, VerticesNum + 1, VerticesNum + 3, VerticesNum + 2 });
+
+	// 添加顶点坐标
+	TempData->Vertices.Append(GetFaceVertices(Direction, InPosition));
 
 	// 添加顶点颜色
 	const int alpha = static_cast<int>(Direction) * 255 / 6;	// RGBA 0 ~ 255
