@@ -11,33 +11,33 @@
 <div class="member-item-container" id="v_int_ChunkNum">
 <h3 class="heading3">ChunkNum</h3>
 <pre class="member-declare-container">
-<code>int ChunkNum;</code>
+<code>UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+int ChunkNum;</code>
 </pre>
-<p class="member-uproperty">It is a UPROPERTY.</p>
 <div class="member-desc-container">
-<p class="member-desc"></p>
+<p class="member-desc">维护的 Chunk 数量，由 RenderingRange 决定</p>
 </div>
 </div>
 
 <div class="member-item-container" id="v_TMap_FVector2D_AChunk__AllChunks">
 <h3 class="heading3">AllChunks</h3>
 <pre class="member-declare-container">
-<code>TMap<span><</span>FVector2D, AChunk*<span>></span> AllChunks;</code>
+<code>UPROPERTY(BlueprintReadOnly)
+TMap<span><</span>FVector2D, AChunk*<span>></span> AllChunks;</code>
 </pre>
-<p class="member-uproperty">It is a UPROPERTY.</p>
 <div class="member-desc-container">
-<p class="member-desc"></p>
+<p class="member-desc">Chunk Map</p>
 </div>
 </div>
 
 <div class="member-item-container" id="v_int_RenderingRange__4800">
 <h3 class="heading3">4800</h3>
 <pre class="member-declare-container">
-<code>int RenderingRange = 4800;</code>
+<code>UPROPERTY(BlueprintReadOnly, EditAnywhere)
+int RenderingRange = 4800;</code>
 </pre>
-<p class="member-uproperty">It is a UPROPERTY.</p>
 <div class="member-desc-container">
-<p class="member-desc"></p>
+<p class="member-desc">渲染距离</p>
 </div>
 </div>
 
@@ -46,9 +46,8 @@
 <pre class="member-declare-container">
 <code>FVector2D LastPlayerChunkCoordinate;</code>
 </pre>
-<p class="member-uproperty">It is not a UPROPERTY.</p>
 <div class="member-desc-container">
-<p class="member-desc"></p>
+<p class="member-desc">上次更新时 Player 所在 Chunk 坐标</p>
 </div>
 </div>
 
@@ -57,9 +56,8 @@
 <pre class="member-declare-container">
 <code>int ChunkSize = 1600;</code>
 </pre>
-<p class="member-uproperty">It is not a UPROPERTY.</p>
 <div class="member-desc-container">
-<p class="member-desc"></p>
+<p class="member-desc">区块宽度</p>
 </div>
 </div>
 
@@ -68,30 +66,30 @@
 <div id="f_bool_ShouldUpdatePlayerCoordinate" class="method-item-container">
 <h3 class="heading3">ShouldUpdatePlayerCoordinate</h3>
 <pre class="method-signature-container">
-<code>bool ShouldUpdatePlayerCoordinate();</code>
-</pre><p class="method-ufunction">It is a UFUNCTION.</p>
-<div class="method-desc-container">
-<p class="method-desc"></p>
+<code>UFUNCTION()
+bool ShouldUpdatePlayerCoordinate();</code>
+</pre><div class="method-desc-container">
+<p class="method-desc">每 Tick 都会触发，根据 ActorLocation 更新 ChunkLocation</p>
 </div>
 <h4 class="heading4">returns</h4>
-<p class="method-desc">MISSING_RET_DESC</p>
+<p class="method-desc">当 Player 移动一段距离后返回 true</p>
 </div>
 <div id="f_void_AddChunk" class="method-item-container">
 <h3 class="heading3">AddChunk</h3>
 <pre class="method-signature-container">
-<code>void AddChunk();</code>
-</pre><p class="method-ufunction">It is a UFUNCTION.</p>
-<div class="method-desc-container">
-<p class="method-desc"></p>
+<code>UFUNCTION()
+void AddChunk();</code>
+</pre><div class="method-desc-container">
+<p class="method-desc">在 RenderingRange 内生成 Chunk</p>
 </div>
 </div>
 <div id="f_void_RemoveChunk" class="method-item-container">
 <h3 class="heading3">RemoveChunk</h3>
 <pre class="method-signature-container">
-<code>void RemoveChunk();</code>
-</pre><p class="method-ufunction">It is a UFUNCTION.</p>
-<div class="method-desc-container">
-<p class="method-desc"></p>
+<code>UFUNCTION()
+void RemoveChunk();</code>
+</pre><div class="method-desc-container">
+<p class="method-desc">移除 RenderingRange 外的 Chunk</p>
 </div>
 </div>
 

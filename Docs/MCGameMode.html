@@ -6,94 +6,15 @@
 
 <body>
 <div class="container">
-<p><a href="index.html">Back to index</a></p><h1 class="heading1">MCGameMode</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_int_ChunkNum">ChunkNum</a></p><p><a href="#v_TMap_FVector2D_AChunk__AllChunks">AllChunks</a></p><p><a href="#v_float_RenderingRange">RenderingRange</a></p><p><a href="#v_FVector2D_ChunkLocation">ChunkLocation</a></p><p><a href="#v_float_ChunkSize">ChunkSize</a></p><h3 class="heading3">Methods</h3><p><a href="#f_bool_UpdateLocation">UpdateLocation</a></p><p><a href="#f_void_AddChunk">AddChunk</a></p><p><a href="#f_void_RemoveChunk">RemoveChunk</a></p>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">MCGameMode</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><h3 class="heading3">Methods</h3><p><a href="#f_UCLASS">UCLASS</a></p>
 <h2 class="heading2">Members</h2>
-<div class="member-item-container" id="v_int_ChunkNum">
-<h3 class="heading3">ChunkNum</h3>
-<pre class="member-declare-container">
-<code>int ChunkNum;</code>
-</pre>
-<p class="member-uproperty">It is a UPROPERTY.</p>
-<div class="member-desc-container">
-<p class="member-desc"></p>
-</div>
-</div>
-
-<div class="member-item-container" id="v_TMap_FVector2D_AChunk__AllChunks">
-<h3 class="heading3">AllChunks</h3>
-<pre class="member-declare-container">
-<code>TMap<span><</span>FVector2D, AChunk*<span>></span> AllChunks;</code>
-</pre>
-<p class="member-uproperty">It is a UPROPERTY.</p>
-<div class="member-desc-container">
-<p class="member-desc">Chunk Map</p>
-</div>
-</div>
-
-<div class="member-item-container" id="v_float_RenderingRange">
-<h3 class="heading3">RenderingRange</h3>
-<pre class="member-declare-container">
-<code>float RenderingRange;</code>
-</pre>
-<p class="member-uproperty">It is a UPROPERTY.</p>
-<div class="member-desc-container">
-<p class="member-desc">渲染距离</p>
-</div>
-</div>
-
-<div class="member-item-container" id="v_FVector2D_ChunkLocation">
-<h3 class="heading3">ChunkLocation</h3>
-<pre class="member-declare-container">
-<code>FVector2D ChunkLocation;</code>
-</pre>
-<p class="member-uproperty">It is not a UPROPERTY.</p>
-<div class="member-desc-container">
-<p class="member-desc">区块中心</p>
-</div>
-</div>
-
-<div class="member-item-container" id="v_float_ChunkSize">
-<h3 class="heading3">ChunkSize</h3>
-<pre class="member-declare-container">
-<code>float ChunkSize;</code>
-</pre>
-<p class="member-uproperty">It is not a UPROPERTY.</p>
-<div class="member-desc-container">
-<p class="member-desc">区块大小</p>
-</div>
-</div>
-
 
 <h2 class="heading2">Methods</h2>
-<div id="f_bool_UpdateLocation" class="method-item-container">
-<h3 class="heading3">UpdateLocation</h3>
+<div id="f_UCLASS" class="method-item-container">
+<h3 class="heading3">UCLASS</h3>
 <pre class="method-signature-container">
-<code>bool UpdateLocation();</code>
-</pre><p class="method-ufunction">It is a UFUNCTION.</p>
-<div class="method-desc-container">
-<p class="method-desc">每 Tick 都会触发，根据 ActorLocation 更新 ChunkLocation</p>
-</div>
-<h4 class="heading4">returns</h4>
-<p class="method-desc">当 Player 移动一段距离后返回 true</p>
-</div>
-<div id="f_void_AddChunk" class="method-item-container">
-<h3 class="heading3">AddChunk</h3>
-<pre class="method-signature-container">
-<code>void AddChunk();</code>
-</pre><p class="method-ufunction">It is a UFUNCTION.</p>
-<div class="method-desc-container">
-<p class="method-desc">在 RenderingRange 内生成 Chunk</p>
-</div>
-</div>
-<div id="f_void_RemoveChunk" class="method-item-container">
-<h3 class="heading3">RemoveChunk</h3>
-<pre class="method-signature-container">
-<code>void RemoveChunk();</code>
-</pre><p class="method-ufunction">It is a UFUNCTION.</p>
-<div class="method-desc-container">
-<p class="method-desc">移除 RenderingRange 外的 Chunk</p>
-</div>
-</div>
+<code>UCLASS()</code>
+</pre></div>
 
 </div>
 </body>
