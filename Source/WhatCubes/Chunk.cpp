@@ -3,6 +3,8 @@
 
 #include "Chunk.h"
 
+#include "ChunkSaveGame.h"
+#include "Kismet/GameplayStatics.h"
 #include "SimplexNoise/Public/SimplexNoiseBPLibrary.h"
 
 // Sets default values
@@ -21,10 +23,32 @@ void AChunk::BeginPlay()
 {
 	Super::BeginPlay();
 
+	ChunkLocation = FVector2D(floor(GetActorLocation().X / (RenderChunkSizeXY * 100)), floor(GetActorLocation().Y / (RenderChunkSizeXY * 100)));
+	
 	// 设定区块由多少个 Block 组成，每个 Block 都被包含在 Blocks 数组中，并记录了其种类
 	Blocks.Init(EBlockType::Air, RenderChunkSizeXY * RenderChunkSizeXY * RenderChunkSizeXY);
 
-	CreateBlocks(Factor);
+	const FString SaveGameSlotName(FString::Printf(TEXT("%d_%d/%d.%d"), Seed, RenderChunkSizeXY, static_cast<int>(ChunkLocation.X), static_cast<int>(ChunkLocation.Y)));
+	if (UGameplayStatics::DoesSaveGameExist(SaveGameSlotName, 0))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Found Saved Game"));
+		const UChunkSaveGame* SaveGame = Cast<UChunkSaveGame>(UGameplayStatics::LoadGameFromSlot(SaveGameSlotName, 0));
+		Blocks = SaveGame->Blocks;
+	}
+	else
+	{
+		CreateBlocks(Factor);
+		UChunkSaveGame* SaveGame = Cast<UChunkSaveGame>(UGameplayStatics::CreateSaveGameObject(UChunkSaveGame::StaticClass()));
+		SaveGame->Blocks = Blocks;
+		if (UGameplayStatics::SaveGameToSlot(SaveGame, SaveGameSlotName, 0))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Saving success"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Saving Failed"));
+		}
+	}
 
 	GenerateMesh();
 

@@ -66,6 +66,9 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	int RenderChunkSizeXY;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int Seed;
+
 	UPROPERTY()
 	TMap<int, FMeshData> MeshData;
 
@@ -74,6 +77,12 @@ public:
 	 */
 	UPROPERTY(BlueprintReadOnly)
 	float Factor;
+
+	/**
+	 * @brief Chunk 的坐标
+	 */
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	FVector2D ChunkLocation;
 
 	/**
 	 * @brief 根据 XYZ 计算出 在 Blocks 数组中的 index, Block 的 index 为 Z * ChunkSize ^ 2 + Y * ChunkSize + X		
