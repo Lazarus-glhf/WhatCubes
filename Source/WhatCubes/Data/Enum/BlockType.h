@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 
-UENUM(BlueprintType)
-enum class EBlockType : uint8
+UENUM()
+enum class EBlockType : uint32
 {
 	None,
 	Air,
