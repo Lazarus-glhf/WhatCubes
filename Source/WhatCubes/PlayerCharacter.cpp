@@ -7,13 +7,10 @@
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 
-// Sets default values
 APlayerCharacter::APlayerCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 		
@@ -34,10 +31,16 @@ APlayerCharacter::APlayerCharacter()
 
 }
 
-// Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	TArray<AActor*> WorldManagers;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AWorldManager::StaticClass(), WorldManagers);
+	if (WorldManagers.Num() > 0)
+	{
+		// WorldManager = *Cast<AWorldManager*>(WorldManagers[0]);
+	}
 
 	//Add Input Mapping Context
 	if (const APlayerController* PlayerController = Cast<APlayerController>(Controller))
@@ -48,13 +51,6 @@ void APlayerCharacter::BeginPlay()
 		}
 	}
 	
-}
-
-// Called every frame
-void APlayerCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -78,7 +74,6 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 }
 
-
 void APlayerCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
@@ -96,7 +91,7 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 void APlayerCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
-	FVector2D LookAxisVector = Value.Get<FVector2D>();
+	const FVector2D LookAxisVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)
 	{
@@ -104,6 +99,40 @@ void APlayerCharacter::Look(const FInputActionValue& Value)
 		GEngine->AddOnScreenDebugMessage(0, 1.0, FColor::Red, FString::Printf(TEXT("Look vector Y: %f X: %f"), LookAxisVector.Y, LookAxisVector.X));
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+void APlayerCharacter::MainInteractive(const FInputActionValue& Value)
+{
+	FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true, this);
+	RV_TraceParams.bTraceComplex = true;
+	// RV_TraceParams.bTraceAsyncScene = true;
+	RV_TraceParams.bReturnPhysicalMaterial = false;
+
+	FVector StartLocation = GetActorLocation() + HandLocation;
+	FVector EndLocation = GetActorForwardVector() * 500 + GetActorLocation();
+
+	//Re-initialize hit info
+	FHitResult RV_Hit(ForceInit);
+	
+	//call GetWorld() from within an actor extending class
+	GetWorld()->LineTraceSingleByChannel(
+		RV_Hit,		//result
+		StartLocation,	//start
+		EndLocation, //end
+		ECC_Pawn, //collision channel
+		RV_TraceParams
+	);
+
+	if (RV_Hit.bBlockingHit)
+	{
+		FVector HitLocation(RV_Hit.ImpactPoint);
+		if (WorldManager)
+		{
+			auto Map = WorldManager->GlobalInfo->GlobalBlocksID;
+			
+			// Map.Find();
+		}
 	}
 }
 

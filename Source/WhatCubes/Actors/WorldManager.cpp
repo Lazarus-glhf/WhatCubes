@@ -7,8 +7,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "SimplexNoise/Public/SimplexNoiseBPLibrary.h"
 
-// Sets default values
 AWorldManager::AWorldManager()
+	: CountTime(0.0f), UpdateTime(5.0f)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -16,7 +16,6 @@ AWorldManager::AWorldManager()
 	GlobalInfo = CreateDefaultSubobject<UGlobalInfo>(TEXT("Global Info"));
 }
 
-// Called when the game starts or when spawned
 void AWorldManager::BeginPlay()
 {
 	Super::BeginPlay();
@@ -34,14 +33,19 @@ void AWorldManager::BeginPlay()
 	// UpdateBlocks();
 }
 
-// Called every frame
 void AWorldManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	ShouldUpdatePlayerCoordinate();
-	AddChunk();
-	// RemoveChunk();
+	if (UpdateTimer(DeltaTime))
+	{
+		if (ShouldUpdatePlayerCoordinate())
+		{
+			AddChunk();
+		}
+		// RemoveChunk();
+	}
+
 }
 
 bool AWorldManager::ShouldUpdatePlayerCoordinate()
@@ -141,6 +145,18 @@ UChunkComponent* AWorldManager::GenerateChunk(const FVector2D& Location)
 		UE_LOG(LogTemp, Warning, TEXT("GeneraedChunk at : %f %f"), Location.X, Location.Y);	
 	}
 	return ChunkComponent;
+}
+
+bool AWorldManager::UpdateTimer(float DeltaTime)
+{
+	CountTime += DeltaTime;
+	if (CountTime >= UpdateDistance)
+	{
+		CountTime = 0;
+		return true;
+	}
+
+	return false;
 }
 
 void AWorldManager::InitInstancedMeshComponents_Implementation()

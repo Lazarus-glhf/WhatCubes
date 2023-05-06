@@ -38,7 +38,7 @@ public:
 	 * @brief 区块更新差值
 	 */
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
-	float UpdateDistance = 100;
+	float UpdateDistance = 500;
 
 	/**
 	 * @brief 维护的 Chunk 数量，由 RenderingRange 决定
@@ -118,4 +118,24 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent)
 	void InitInstancedMeshComponents();
+
+	UFUNCTION(BlueprintCallable)
+	inline float GetCountTime() const { return CountTime; }
+
+	UFUNCTION(BlueprintCallable)
+	inline float GetUpdateTime() const { return UpdateTime; }
+
+protected:
+	bool UpdateTimer(float DeltaTime);
+	
+private:
+	/**
+	 * @brief 更新计时
+	 */
+	float CountTime;
+
+	/**
+	 * @brief 更新间隔
+	 */
+	float UpdateTime;
 };
