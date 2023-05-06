@@ -6,10 +6,139 @@
 
 <body>
 <div class="container">
-<p><a href="index.html">Back to index</a></p><h1 class="heading1">PlayerCharacter</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><h3 class="heading3">Methods</h3>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">PlayerCharacter</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_USkeletalMeshComponent_Mesh1P">Mesh1P</a></p><p><a href="#v_UCameraComponent_FirstPersonCameraComponent">FirstPersonCameraComponent</a></p><p><a href="#v_class_UInputMappingContext_DefaultMappingContext">DefaultMappingContext</a></p><p><a href="#v_class_UInputAction_JumpAction">JumpAction</a></p><p><a href="#v_class_UInputAction_MoveAction">MoveAction</a></p><p><a href="#v_FVector_HandLocation">HandLocation</a></p><h3 class="heading3">Methods</h3><p><a href="#f_void_Moveconst_FInputActionValue_Value">Move</a></p><p><a href="#f_void_Lookconst_FInputActionValue_Value">Look</a></p><p><a href="#f_void_MainInteractiveconst_FInputActionValue_Value">MainInteractive</a></p>
 <h2 class="heading2">Members</h2>
+<div class="member-item-container" id="v_USkeletalMeshComponent_Mesh1P">
+<h3 class="heading3">Mesh1P</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+USkeletalMeshComponent* Mesh1P;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">mesh: 1st person view (arms; seen only by self)</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_UCameraComponent_FirstPersonCameraComponent">
+<h3 class="heading3">FirstPersonCameraComponent</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+UCameraComponent* FirstPersonCameraComponent;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">person camera</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_class_UInputMappingContext_DefaultMappingContext">
+<h3 class="heading3">DefaultMappingContext</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+class UInputMappingContext* DefaultMappingContext;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">MappingContext</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_class_UInputAction_JumpAction">
+<h3 class="heading3">JumpAction</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+class UInputAction* JumpAction;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">Jump Input Action</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_class_UInputAction_MoveAction">
+<h3 class="heading3">MoveAction</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+class UInputAction* MoveAction;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">Move Input Action</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_FVector_HandLocation">
+<h3 class="heading3">HandLocation</h3>
+<pre class="member-declare-container">
+<code>UPROPERTY(EditAnywhere, BlueprintReadWrite)
+FVector HandLocation;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">LineTrace 局部起始地点，有骨骼后替代</p>
+</div>
+</div>
+
 
 <h2 class="heading2">Methods</h2>
+<div id="f_void_Moveconst_FInputActionValue_Value" class="method-item-container">
+<h3 class="heading3">Move</h3>
+<pre class="method-signature-container">
+<code>void Move(const FInputActionValue& Value);</code>
+</pre><div class="method-desc-container">
+<p class="method-desc">Called for movement input</p>
+</div>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Value</td>
+<td><p class="">前后左右 -1 0 1</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_void_Lookconst_FInputActionValue_Value" class="method-item-container">
+<h3 class="heading3">Look</h3>
+<pre class="method-signature-container">
+<code>void Look(const FInputActionValue& Value);</code>
+</pre><div class="method-desc-container">
+<p class="method-desc">Called for looking input</p>
+</div>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Value</td>
+<td><p class="">上下左右 -1 0 1</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
+<div id="f_void_MainInteractiveconst_FInputActionValue_Value" class="method-item-container">
+<h3 class="heading3">MainInteractive</h3>
+<pre class="method-signature-container">
+<code>void MainInteractive(const FInputActionValue& Value);</code>
+</pre><div class="method-desc-container">
+<p class="method-desc">左键互动</p>
+</div>
+<h4 class="heading4">params</h4>
+<center><table><tbody>
+<thead>
+    <tr>
+        <th>Parameter Name</th>
+        <th style="width:80%">Description</th>
+    </tr>
+</thead><tr>
+<td>Value</td>
+<td><p class="">是否操作</p>
+</td>
+</tr>
+</tbody></table></center>
+</div>
 
 </div>
 </body>

@@ -6,7 +6,7 @@
 
 <body>
 <div class="container">
-<p><a href="index.html">Back to index</a></p><h1 class="heading1">WorldManager</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_int_Seed">Seed</a></p><p><a href="#v_float_UpdateDistance__100">UpdateDistance</a></p><p><a href="#v_int_ChunkNum">ChunkNum</a></p><p><a href="#v_TMap_int32_UInstancedStaticMeshComponent__InstancedMeshComponents">InstancedMeshComponents</a></p><p><a href="#v_int_RenderingRange__48">RenderingRange</a></p><p><a href="#v_FVector2D_LastPlayerChunkCoordinate">LastPlayerChunkCoordinate</a></p><p><a href="#v_int_ChunkWidth__16">ChunkWidth</a></p><p><a href="#v_int_ChunkHeight__312">ChunkHeight</a></p><h3 class="heading3">Methods</h3><p><a href="#f_bool_ShouldUpdatePlayerCoordinate">ShouldUpdatePlayerCoordinate</a></p><p><a href="#f_void_AddChunk">AddChunk</a></p><p><a href="#f_void_RemoveChunk_const">RemoveChunk</a></p><p><a href="#f_int_GetChunkRealWidth_const">GetChunkRealWidth</a></p><p><a href="#f_FVector_ChunkIndexToRealPositionconst_int_X_const_int_Y_const">ChunkIndexToRealPosition</a></p>
+<p><a href="index.html">Back to index</a></p><h1 class="heading1">WorldManager</h1><h2 class="heading2">TOC</h2><h3 class="heading3">Members</h3><p><a href="#v_int_Seed">Seed</a></p><p><a href="#v_float_UpdateDistance__500">UpdateDistance</a></p><p><a href="#v_int_ChunkNum">ChunkNum</a></p><p><a href="#v_TMap_int32_UInstancedStaticMeshComponent__InstancedMeshComponents">InstancedMeshComponents</a></p><p><a href="#v_int_RenderingRange__48">RenderingRange</a></p><p><a href="#v_FVector2D_LastPlayerChunkCoordinate">LastPlayerChunkCoordinate</a></p><p><a href="#v_int_ChunkWidth__16">ChunkWidth</a></p><p><a href="#v_int_ChunkHeight__312">ChunkHeight</a></p><p><a href="#v_float_CountTime">CountTime</a></p><p><a href="#v_float_UpdateTime">UpdateTime</a></p><h3 class="heading3">Methods</h3><p><a href="#f_bool_ShouldUpdatePlayerCoordinate">ShouldUpdatePlayerCoordinate</a></p><p><a href="#f_void_AddChunk">AddChunk</a></p><p><a href="#f_void_RemoveChunk_const">RemoveChunk</a></p><p><a href="#f_int_GetChunkRealWidth_const">GetChunkRealWidth</a></p><p><a href="#f_FVector_ChunkIndexToRealPositionconst_int_X_const_int_Y_const">ChunkIndexToRealPosition</a></p>
 <h2 class="heading2">Members</h2>
 <div class="member-item-container" id="v_int_Seed">
 <h3 class="heading3">Seed</h3>
@@ -19,11 +19,11 @@ int Seed;</code>
 </div>
 </div>
 
-<div class="member-item-container" id="v_float_UpdateDistance__100">
+<div class="member-item-container" id="v_float_UpdateDistance__500">
 <h3 class="heading3">UpdateDistance</h3>
 <pre class="member-declare-container">
 <code>UPROPERTY(BlueprintReadOnly, EditAnywhere)
-float UpdateDistance = 100;</code>
+float UpdateDistance = 500;</code>
 </pre>
 <div class="member-desc-container">
 <p class="member-desc">区块更新差值</p>
@@ -94,6 +94,26 @@ int ChunkHeight = 312;</code>
 </pre>
 <div class="member-desc-container">
 <p class="member-desc">区块 Z 方块数</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_float_CountTime">
+<h3 class="heading3">CountTime</h3>
+<pre class="member-declare-container">
+<code>float CountTime;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">更新计时</p>
+</div>
+</div>
+
+<div class="member-item-container" id="v_float_UpdateTime">
+<h3 class="heading3">UpdateTime</h3>
+<pre class="member-declare-container">
+<code>float UpdateTime;</code>
+</pre>
+<div class="member-desc-container">
+<p class="member-desc">更新间隔</p>
 </div>
 </div>
 
